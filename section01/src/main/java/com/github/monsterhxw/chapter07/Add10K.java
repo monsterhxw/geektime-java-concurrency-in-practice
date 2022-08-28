@@ -12,6 +12,8 @@ public class Add10K {
     
     private long countV3 = 0L;
     
+    private volatile long countV4 = 0L;
+    
     void add10kV1() {
         int idx = 0;
         while (idx++ < 10_000) {
@@ -33,12 +35,23 @@ public class Add10K {
         }
     }
     
+    void add10kV4() {
+        int idx = 0;
+        while (idx++ < 10_000) {
+            setV4();
+        }
+    }
+    
     synchronized long getV2() {
         return countV2;
     }
     
     synchronized void setV2(long v) {
         countV2 = v;
+    }
+    
+    synchronized void setV4() {
+        countV4 += 1;
     }
     
     public long getCountV1() {
@@ -51,5 +64,9 @@ public class Add10K {
     
     public long getCountV3() {
         return countV3;
+    }
+    
+    public long getCountV4() {
+        return countV4;
     }
 }
