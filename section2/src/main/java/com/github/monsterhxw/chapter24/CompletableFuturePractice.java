@@ -1,5 +1,6 @@
 package com.github.monsterhxw.chapter24;
 
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -43,10 +44,14 @@ public class CompletableFuturePractice {
         System.out.println(task3.join());
     }
     
-    private static void sleep(int time, TimeUnit timeUnit) {
+   public static void sleep(int time, TimeUnit timeUnit) {
         try {
             timeUnit.sleep(time);
         } catch (InterruptedException ignore) {
         }
+    }
+    
+    public static int getRandom(int min, int max) {
+        return new Random().nextInt(max - min + 1) + min;
     }
 }
